@@ -14,18 +14,27 @@ with open(sys.argv[1], 'r') as fasta:
         if line.startswith(">"):
             # Header line, skip it
             continue
-        for base in line.strip():
-            if base == "A":
-                a_count += 1
-            elif base == "C":
-                c_count += 1
-            elif base == "G":
-                g_count += 1
-            else:
-                t_count += 1
+        a_count += line.count("A")
+        t_count += line.count("T")
+        c_count += line.count("C")
+        g_count += line.count("G")
+        
+    print("A: %d" % a_count)
+    print("C: %d" % c_count)
+    print("G: %d" % g_count)
+    print("T: %d" % t_count)
+    
+        
+total=float(a_count+t_count+c_count+g_count)
 
-print("Base counts for file %s:" % sys.argv[1])
-print("A: %d" % a_count)
-print("C: %d" % c_count)
-print("G: %d" % g_count)
-print("T: %d" % t_count)
+a_percent=float((a_count/total)*100.)
+c_percent=float((c_count/total)*100.)
+t_percent=float((t_count/total)*100.)
+g_percent=float((g_count/total)*100.)
+
+print("The percent of A: %f" % a_percent)
+print("The percent of C: %f" % c_percent)
+print("The percent of T: %f" % t_percent)
+print("The percent of G: %f" % g_percent)
+
+
