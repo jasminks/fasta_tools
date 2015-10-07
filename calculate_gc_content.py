@@ -12,12 +12,11 @@ t_count = 0
 
 varb = ["fasta_file"]
 parser = argparse.ArgumentParser()
-parser.add_argument("file_name",
-                    choices = varb)
+parser.add_argument("file_name")
 args = parser.parse_args()
 file_name = args.file_name
 
-with open(sys.argv[1], 'r') as fasta:
+with open(args.file_name, 'r') as fasta:
     for line in fasta:
         if line.startswith(">"):
             # Header line, skip it
